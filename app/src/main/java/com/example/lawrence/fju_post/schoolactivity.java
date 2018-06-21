@@ -59,8 +59,6 @@ public class schoolactivity extends Fragment {
     public AdapterView.OnItemClickListener mListener;
 
     //點擊
-    //RecyclerView mRecyclerView;
-    //LinearLayoutManager mLayoutManager;
     ShowPostActivity mAdapter;
     private String text;
 
@@ -75,10 +73,8 @@ public class schoolactivity extends Fragment {
 
         //BUTTON
         mOrder = (Button) view.findViewById(R.id.btnorder);
-        mItemSelected = (TextView) view.findViewById(R.id.choose);
         listItems = getResources().getStringArray(R.array.shopping_item);
         checkedItems = new boolean[listItems.length];
-        mgetname = (TextView)view.findViewById(R.id.choose2);
         //RECYCER VIEW
         usersList = new ArrayList<>();
         usersListAdapter = new ShowPostAdapter(getActivity(),usersList);
@@ -88,23 +84,10 @@ public class schoolactivity extends Fragment {
 
         mMainList.setLayoutManager(new LinearLayoutManager(getActivity()));//创建默认的线性LayoutManager
         mMainList.setAdapter(usersListAdapter);
-        /*usersListAdapter.setOnItemClickListener(new ShowPostAdapter.OnItemClickListener(){
-            @SuppressLint("WrongConstant")
-            @Override
-            public void onItemClick(View view , int position){
-                Intent intent = new Intent(getActivity(), ShowPostActivity.class);
-                startActivity(intent);
-            }
-        });*/
 
         //點擊
         RecyclerView mRecyclerView;
         LinearLayoutManager mLayoutManager;
-
-        //mAdapter = new ShowPostAdapter(usersList); ???????
-
-
-
 
 
 
@@ -162,23 +145,21 @@ public class schoolactivity extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
                         String item ="";
-                        String[] box = new String[10];
                         for (int i = 0; i < mUserItems.size(); i++) {
                             item = item + listItems[mUserItems.get(i)];
-                            box[i] = listItems[mUserItems.get(i)];
 
-                            //for(int j = 0;j<box.length;j++) {
+
+
                                 filter(item);
-                            //}
+
                             if (i != mUserItems.size() - 1) ;
                             {
                                 item = item+ ",";
-                                //box[i] = listItems[mUserItems.get(i)];
-                                //filter(String.valueOf(box[i]));
+
 
                             }
                         }
-                        //mItemSelected.setText(item);
+
                     }
 
 
@@ -198,7 +179,7 @@ public class schoolactivity extends Fragment {
                         for (int i = 0; i < checkedItems.length; i++) {
                             checkedItems[i] = false;
                             mUserItems.clear();
-                            //mItemSelected.setText("");
+
                         }
                     }
                 });
@@ -218,12 +199,11 @@ public class schoolactivity extends Fragment {
         ArrayList<Post> filteredList = new ArrayList<>();
         for (Post item: usersList) {
 
-            //ArrayList<Users> filteredList = new ArrayList<>();
-                //for(int i = 0;i<usersList.size();i++){
-                    if (item.getActivity_type_id()!=null && text.contains(item.getActivity_type_id())) { //.contains(text)
-                        //mgetname.setText(item.getName());
+
+                    if (item.getActivity_type_id()!=null && text.contains(item.getActivity_type_id())) {
+
                         filteredList.add(item);
-                        //mgetname.setText(item.getName());
+
                     }
 
                 }
